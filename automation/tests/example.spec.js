@@ -41,8 +41,6 @@ test.describe('Navigation tests', ()=> {
     loginPageVar = new loginPage(page);
     basePageVar = new basePage(page);
     await loginPageVar.goto();
-    var loginInfo = new loginInformation('aleksas.balciukynas@sft.com', 'tester142');
-    await loginPageVar.login(loginInfo);
   })
 
   let userNavigationTestsParams = [
@@ -55,10 +53,33 @@ test.describe('Navigation tests', ()=> {
   userNavigationTestsParams.forEach((param) => {
     test(`${param.buttonText} user navigation successful`, async ({page}) => {
       // Act
+      var loginInfo = new loginInformation('aleksas.balciukynas@sft.com', 'tester142');
+      await loginPageVar.login(loginInfo);
       await basePageVar.menu.clickButtonInMenu(param.buttonText);
       
       // Assert
-      await page.pause();
+      expect(await basePageVar.title.innerText()).toBe(param.buttonText);
+    })
+  })
+
+  let adminNavigationTestsParams = [
+    {buttonText: "Patiekalų Redagavimas"},
+    {buttonText: "Vartotojų Išlaidos"},
+    {buttonText: "Užsakymų Istorija"},
+    {buttonText: "Užsakymų Sąrašas"},
+    {buttonText: "Užsakymų Kiekiai"},
+    {buttonText: "Patiekalų Įvertinimai"},
+    {buttonText: "Nustatymai"},
+  ]
+  
+  adminNavigationTestsParams.forEach((param) => {
+    test(`${param.buttonText} admin navigation successful`, async ({page}) => {
+      // Act
+      var loginInfo = new loginInformation('admin9@sft.com', 'admin816');
+      await loginPageVar.login(loginInfo);
+      await basePageVar.menu.clickButtonInMenu(param.buttonText);
+      
+      // Assert
       expect(await basePageVar.title.innerText()).toBe(param.buttonText);
     })
   })
