@@ -65,7 +65,7 @@ test.describe('Navigation tests', ()=> {
   let adminNavigationTestsParams = [
     {buttonText: "Patiekalų Redagavimas"},
     {buttonText: "Vartotojų Išlaidos"},
-    {buttonText: "Užsakymų Istorija"},
+    {buttonText: "Užsakymų istorija"},
     {buttonText: "Užsakymų Sąrašas"},
     {buttonText: "Užsakymų Kiekiai"},
     {buttonText: "Patiekalų Įvertinimai"},
